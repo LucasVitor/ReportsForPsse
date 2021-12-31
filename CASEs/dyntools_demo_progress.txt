@@ -1,0 +1,131 @@
+psspy.case('C:\\Users\\Lucas\\Google Drive\\23 - Job Seeking Engineer\\1 - Preparation Material\\13 - JConto\\Dynamics Network for PSSE\\10 - draft\\CASEs\\savcnv.sav')
+
+
+PSS(R)E PROGRAM APPLICATION GUIDE EXAMPLE
+BASE CASE INCLUDING SEQUENCE DATA
+
+The Saved Case in file C:\Users\Lucas\Google Drive\23 - Job Seeking Engineer\1 - Preparation Material\13 - JConto\Dynamics Network for PSSE\10 - draft\CASEs\savcnv.sav was saved on WED, OCT 25 2017  11:50
+
+The following option settings are changed to the settings contained in the Saved Case File:
+
+** [OPF] APPLY FUEL COST OBJECTIVE option setting set to YES
+
+** [OPF] APPLY ADJUSTABLE BRANCH REACTANCE OBJECTIVE option setting set to YES
+
+** [OPF] CONSTRAIN INTERFACE FLOWS option setting set to YES
+
+** [OPF] AUTOMATIC SCALING option setting set to YES
+
+** [OPF] DUAL VARIABLE CONVERGENCE CRITERIA option setting set to YES
+
+** [OPF] NUMBER OF BAD ITERATIONS WHEN MU>-2 option setting set to 10
+
+** [OPF] NUMBER OF BAD ITERATIONS WHEN MU<=-2 option setting set to 20
+
+** [OPF] PRODUCE AN OPF LOG FILE option setting set to YES
+
+** [OPF] ADD SOLUTION DETAILS TO OPF LOG FILE option setting set to YES
+psspy.rstr('C:\\Users\\Lucas\\Google Drive\\23 - Job Seeking Engineer\\1 - Preparation Material\\13 - JConto\\Dynamics Network for PSSE\\10 - draft\\CASEs\\savnw.snp')
+
+
+The Snapshot at TIME = 0.0 in file C:\Users\Lucas\Google Drive\23 - Job Seeking Engineer\1 - Preparation Material\13 - JConto\Dynamics Network for PSSE\10 - draft\CASEs\savnw.snp was saved on WED, OCT 25 2017  11:50
+
+NUMBER OF ELEMENTS RESTORED:
+  CONS STATES   VARS  ICONS CHANNELS
+   177     63     16     14     41
+
+Deleted all Plot Channels and reset Next Channel (NXTCHN) index to 1
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+       7     17     15
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      13     17     15
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      19     17     15
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      25     17     15
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      31     17     15
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      37     17     15
+
+6 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      43     17     15
+
+8 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      51     17     15
+
+8 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      59     17     15
+
+23 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+      82     40     38
+
+69 Output channels have been added
+
+
+Next available addresses are:
+  CHANNEL   VAR   ICON
+     151    108    140
+
+Deleted all Plot Channels and reset Next Channel (NXTCHN) index to 1
+
+CHANNEL    1 WITH IDENTIFIER "PLOD   153[MID230      230.00]1" ADDED
+
+CHANNEL    2 WITH IDENTIFIER "VAR 108" ADDED
+
+CHANNEL    3 WITH IDENTIFIER "STATE 64" ADDED
+
+CHANNEL    4 WITH IDENTIFIER "STATE 64" ADDED
+
+Channel 4 address changed to 714 identifier=""
+Address 714 points to STATE 64
+
+CHANNEL    5 WITH IDENTIFIER "VOLT    101 [NUC-A       21.600]" ADDED
+
+CHANNEL    6 WITH IDENTIFIER "ANGL    101 [NUC-A       21.600]" ADDED
