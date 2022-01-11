@@ -1,7 +1,7 @@
 # see slice, strip and split
 
 import os, re
-class Channel():
+class Channel(object):
     """ Class Channel 
              ________________________________________________________________________________
             |                                                                                |
@@ -18,8 +18,6 @@ class Channel():
 
             Instance Attributes: to pass to instance the class: 
             
-                - Data (data): a list from the .out file.
-                
                 - Channel identifier (chanidentifier): a string following the Table 15-2. 
             
             Instance Attributes calculates in the class:
@@ -69,9 +67,12 @@ class Channel():
                     'NN':['VAR' ,'STATE'],
                     'VV':['PLOD','QLOD'],
                     'ZZ':['POWR','MVA','APPR','APPX','VARS']}
-                    
-    def __init__(self,chanidentifier,data,debug = False ):
-        """def __init__(self,chanidentifier,data,debug = False ):
+    init_channel_id = 0
+    characterize_id = 0
+    
+    
+    def __init__(self):
+        """def __init__(self,chanidentifier,debug = False ):
         """
         self.__magnitude      = None
         self.__element        = None
@@ -84,10 +85,34 @@ class Channel():
         self.__busto          = None     
         self.__ckt            = None 
         self.__sttvarnumber   = None    
-        self.__data           = data
-        self.__chanidentifier = chanidentifier
-        self.__debug = debug
-    
+        self.__chanidentifier = None
+        self.__chanid         = None
+        self.__debug          = False
+        self.__dict4print = {'MACHINE':{'ANGL':[],'POWR':[],'VARS':[],'ETRM':[],'EFD':[],'PMEC':[],'SPD':[],'IFD':[],
+                            'ECMP':[],'AUX':[],'VREF':[],'VUEL':[],'VOEL':[],'ITRM':[],'APPR':[],'GREF':[],
+                            'LCRF':[],'WVEL':[],'WTSP':[],'WPCH':[],'WAET':[],'WRTV':[],'WRTI':[],'WPCM':[],
+                            'WQCM':[],'WAUX':[],'APPX':[]},
+                            'BUSLOAD' :{'PLOD':[],'QLOD': []},
+                            'STATEVAR':{'VAR':[],'STATE':[]},
+                            'BUS'     :{'FREQ':[],'VOLT':[],'ANGL':[]},
+                            'BRANCH'  :{'POWR':[],'MVA':[],'APPR':[],'APPX':[],'VARS':[]}} 
+
+
+    def init_channel(self,chanidentifier,chanidnumber,debug = False ):
+        if chanidentifier == 'Time(s)':
+            raise ValueError ("'Time(s)' is not a valid channel")
+            return
+        else:
+            try:
+                self.__chanid = int(chanidnumber)
+                self.__chanidentifier = chanidentifier
+                self.__debug          = debug
+            except:
+                raise ValueError('chanidnumber is not an integer!')
+                return    
+            
+            Channel.init_channel_id += 1
+        
     def __check_magnitude(self,**kwargs):
         """ def __check_magnitude():
             This method verify if the magnitude found is consisten to the default patter, returning a string
@@ -145,32 +170,52 @@ class Channel():
                     self.__busnumber = Channel.__get_bus_number(self,strg)
                     self.__busname   = Channel.__get_bus_name(self,strg)
 
+    def __dict4print(self):
+        self.__dict4print[self.__element][self.__magnitude].append(self.__chanid)
+
     def characterize(self):
         """def characterize(self)
             This method is the connection between other programns and the class. 
              It must be THE FIRST METHOD TO BE CALLED because it is reposponsable to instance
              all channel's variables and to verify if the result is consist. 
         """
-        error1 = "\n\n      Channel Identifier (chanidentifier) does not match any default pattern!\n\
-                  \n      The string in the  argument 'chanidentifier' must follow the patter especified in 'Program Operation Manual (PSSE 34.2)':'Table 15-2. Activity CHAN Summary'."
-        try: self.__get_channel_ids()
-        except: raise ValueError(error1)
+        if Channel.characterize_id == (Channel.init_channel_id -1):  
+            error1 = "\n\n      Channel Identifier (chanidentifier) does not match any default pattern!\n\
+                      \n      The string in the  argument 'chanidentifier' must follow the patter especified in 'Program Operation Manual (PSSE 34.2)':'Table 15-2. Activity CHAN Summary'."
+            try: self.__get_channel_ids()
+            except: raise ValueError(error1)
+            
+            if self.__busnumber == None and self.__busfrom == None:     
+                if self.__sttvarnumber == None: raise ValueError(error1)
+           
+            if self.__debug:
+               print '\n' 
+               print ' Channel name              :',self.__chanidentifier,'\n' 
+               print '         Magnitude         =', self.__magnitude      
+               print '         Element           =',self.__element        
+               print '         Pattern Title     =',self.__patterntitle    
+               print '         Machine           =',self.__machineid      
+               print '         Bus number        =',self.__busnumber
+               print '         Bus name          =',self.__busname     
+               print '         Load Id           =',self.__loadid         
+               print '         Bus From          =',self.__busfrom
+               print '         Bus to            =',self.__busto       
+               print '         Circuit Id        =',self.__ckt
+               print '         Status/Var number =',self.__sttvarnumber
+               print '         Channel ID        =',self.__chanid    
+            Channel.__dict4print(self)
+            
+            Channel.characterize_id += 1
+        else:
+            print "Error in Characterize. Channel 'Time(s)' not accepted in step %s "% Channel.init_channel_id
+            return
+
+    def get_dict4print(self):
+        for key1, dict1 in self.__dict4print.items():
+            for key2, value2 in dict1.items():
+                if value2 == [] : dict1.pop(key2)
+
+        for key1, dict1 in self.__dict4print.items():
+            if dict1 == {}: self.__dict4print.pop(key1)
         
-        if self.__busnumber == None and self.__busfrom == None:     
-            if self.__sttvarnumber == None: raise ValueError(error1)
-       
-        if self.__debug:
-           print '\n' 
-           print ' Channel name              :',self.__chanidentifier,'\n' 
-           print '         Magnitude         =', self.__magnitude      
-           print '         Element           =',self.__element        
-           print '         Pattern Title     =',self.__patterntitle    
-           print '         Machine           =',self.__machineid      
-           print '         Bus number        =',self.__busnumber
-           print '         Bus name          =',self.__busname     
-           print '         Load Id           =',self.__loadid         
-           print '         Bus From          =',self.__busfrom
-           print '         Bus to            =',self.__busto       
-           print '         Circuit Id        =',self.__ckt
-           print '         Status/Var number =',self.__sttvarnumber
-                             
+        return self.__dict4print
