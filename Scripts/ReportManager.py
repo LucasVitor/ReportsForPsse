@@ -17,7 +17,10 @@ class ReportManager(object):
     def get_chapter_list(self):
         self.__reportindex['CHAPTERS']= self.__chapterlist
         #pprint.pprint(dict(self.__reportindex),width=1)
- 
+
+#    def append_dictionary(self,,**kwargs):
+#        self.__reportindex[kwargs['CHAPTERS']] +={kwargs['SUBCHAPTERS']
+        
     def get_subchapter_list(self):
         heigthprop = 1 
         for chapter in self.__chapterlist:

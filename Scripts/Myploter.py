@@ -6,18 +6,17 @@ import numpy as np
 class Ploter(object):
     
     def __init__(self):
-        self.__title     = None
-        self.__magnitude = None
         self.__y = [1,	4,	9,	16,	25,	36,	49,	64,	81,	100]
         self.__x = [1,	2,	3,	4,	5,	6,	7,	8,	9,	10]
-        self.__nrows = 3
-        self.__ncols = 2
-        self.__height = 7.2
-        self.__width = 10.6
+        self.__nrows  = 3
+        self.__ncols  = 2
+        self.__height = 7.0#2
+        self.__width  = 10.0#6
         self.__xlabel = 'x label'
         self.__ylabel = 'y label'
         self.__curvelabel = 'quadratic'
         self.__pagetitle = 'Overlapping Gridspecs'
+
     def get_data(self):
         pass
 
