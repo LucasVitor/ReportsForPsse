@@ -115,17 +115,16 @@ class MakeReport(object):
             filename ='C:\\Users\\Lucas\\Google Drive\\23 - Job Seeking Engineer\\1 - Preparation Material\\16_Git_Projects\\1_Report_Psse\\AuxDev\\7.jpg'
             canvas.saveState()
             canvas.drawInlineImage(filename, 0.0, 0.0,8.26*inch,11.69*inch)
-            #canvas.drawImage(backimage, 8.26*inch,11.69*inch) #, mask='auto'
             canvas.restoreState()
 
         def on_remaining_pages(canvas,doc):
             canvas.saveState()
             canvas.setFont('Times-Italic',7)
-            canvas.drawString(inch*7.5, 0.35 * inch, "Page %d" % (doc.page-1))
+            canvas.drawString(inch*7.3, 0.35 * inch, "Page %d" % (doc.page-1))
             canvas.line(doc.leftMargin, doc.bottomMargin, doc.width + 0.5*inch, doc.bottomMargin)
             canvas.line(doc.leftMargin, doc.height+0.5*inch, doc.width + 0.5*inch, doc.height+0.5*inch)
             canvas.setFont('Times-Italic',9)
-            canvas.drawString(doc.leftMargin, doc.height+0.5*inch + 5,"Stability Report: %s" %self.__reporttitle)
+            canvas.drawString(doc.leftMargin, doc.height+0.5*inch + 6,"Stability Report: %s" %self.__reporttitle)
             canvas.restoreState()
 
         marginsize=inch*0.5
@@ -144,14 +143,14 @@ class MakeReport(object):
         
         repstyle  = ParagraphStyle('yourtitle',
                        fontName='Times-Italic',
-                       fontSize=46,
+                       fontSize=48,
                        parent=styles['Normal'],
                        leftIndent = 4.8*inch, 
                        textColor = colors.Color(0,0,0,1),
                        spaceAfter=24)
         
         titlestyle = ParagraphStyle('yourtitle',
-                       fontName='Helvetica-Oblique',
+                       fontName='Times-Italic',
                        fontSize=28,
                        parent=styles['Normal'],
                        leftIndent = 0.25*inch, 
@@ -179,12 +178,12 @@ class MakeReport(object):
             Elements.append(Spacer(7.2*inch,10.69*inch*0.2))
             Elements.append(Paragraph('Stability',repstyle))
             Elements.append(Paragraph('Report',repstyle))
-            Elements.append(Spacer(7.2*inch,10.69*inch*0.63))
+            Elements.append(Spacer(7.2*inch,10.69*inch*0.62))
             Elements.append(Paragraph(self.__reporttitle,titlestyle))
             Elements.append(NextPageTemplate('remaining_pages')) 
             Elements.append(PageBreak())
 
-            for i in range(3):
+            for i in range(5):
                 if i == 0: 
                     Elements.append(Paragraph('Chapter',chapterstyle))    
                     Elements.append(Paragraph('Subchapter',subchapstyle)) 
